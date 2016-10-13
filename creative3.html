@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>Pizza Order</title>
+
+		<link href="http://fonts.googleapis.com/css?family=Cookie|Open+Sans:400,700" rel="stylesheet" />
+		<link href="creative3.css" rel="stylesheet" />
+	</head>
+
+	<!-- Declare a new AngularJS app and associate the controller -->
+	<body ng-app ng-controller="OrderFormController">
+
+
+		<form>
+
+			<h1>Make Your Own Pizza</h1>
+
+
+			<md-divider><h3>Enter the Number of Pizzas to Order:</h3></md-divider>
+			<ul>	
+			<div class="pizzaCount">
+			<input type="text" id="pizzaCount" ng-model="count" placeholder="" ng-keypress="filterValue($event)" >
+			</div>	
+			</ul>
+
+
+			<md-tabs md-dynamic-height md-border-bottom>
+
+
+				<md-tab label= "Size">
+					<br><md-divider><h3>Choose Your Size</h3></md-divider>
+			<ul>
+				<li ng-repeat="size in sizes" ng-click="setActive(size, sizes)" ng-class="{active:size.active}">
+					{{size.name}} <span>{{size.price | currency}}</span>
+				</li>
+			</ul>
+				</md-tab>
+
+
+				<md-tab label= "Crust">
+					<md-divider><h3>Choose Your Crust</h3></md-divider>
+			<ul>
+				<li ng-repeat="crust in crusts" ng-click="setActive(crust, crusts)" ng-class="{active:crust.active}">
+					{{crust.name}} <span>{{crust.price | currency}}</span>
+				</li>
+			</ul>
+				</md-tab>
+
+
+
+						<md-tab label= "Sauce">
+							<md-divider><h3>Choose Your Sauce</h3></md-divider>
+					<ul>
+						<li ng-repeat="sauce in sauces" ng-click="setActive(sauce, sauces)" ng-class="{active:sauce.active}">
+							{{sauce.name}} <span>{{sauce.price | currency}}</span>
+						</li>
+					</ul>
+								</md-tab>
+
+						<md-tab label= "Cheese">
+							<md-divider><h3>Choose Your Cheese</h3></md-divider>
+					<ul>
+						<li ng-repeat="cheese in cheeses" ng-click="setActive(cheese, cheeses)" ng-class="{active:cheese.active}">
+							{{cheese.name}} <span>{{cheese.price | currency}}</span>
+						</li>
+					</ul>
+								</md-tab>
+
+						<md-tab label= "Toppings">
+							<md-divider><h3>Choose Your Toppings</h3></md-divider>
+					<ul>
+						<li ng-repeat="topping in toppings" ng-click="toggleActive(topping)" ng-class="{active:topping.active}">
+							{{topping.name}} <span>{{topping.price | currency}}</span>
+						</li>
+					</ul>
+								</md-tab>
+			</md-tabs>
+
+
+
+			<div class="total">
+				<!-- Calculate the total price of all chosen services. Format it as currency. -->
+				Total: <span>{{total() | currency}}</span>
+			</div>
+
+		</form>
+
+		<!-- Include AngularJS from Google's CDN -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script src="creative3.js"></script>
+	</body>
+</html>
